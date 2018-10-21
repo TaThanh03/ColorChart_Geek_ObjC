@@ -15,6 +15,7 @@
 		13E2457D217B6BE100D5D534 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E2457C217B6BE100D5D534 /* main.m */; };
 		13E24587217B6BE100D5D534 /* ColorChart_Geek_ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E24586217B6BE100D5D534 /* ColorChart_Geek_ObjCTests.m */; };
 		13E24592217B6BE100D5D534 /* ColorChart_Geek_ObjCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E24591217B6BE100D5D534 /* ColorChart_Geek_ObjCUITests.m */; };
+		13E245A1217B6F4500D5D534 /* MyRotatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E245A0217B6F4500D5D534 /* MyRotatingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		13E2458D217B6BE100D5D534 /* ColorChart_Geek_ObjCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorChart_Geek_ObjCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13E24591217B6BE100D5D534 /* ColorChart_Geek_ObjCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorChart_Geek_ObjCUITests.m; sourceTree = "<group>"; };
 		13E24593217B6BE100D5D534 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13E2459F217B6F4500D5D534 /* MyRotatingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyRotatingView.h; sourceTree = "<group>"; };
+		13E245A0217B6F4500D5D534 /* MyRotatingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyRotatingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				13E24578217B6BE100D5D534 /* LaunchScreen.storyboard */,
 				13E2457B217B6BE100D5D534 /* Info.plist */,
 				13E2457C217B6BE100D5D534 /* main.m */,
+				13E2459F217B6F4500D5D534 /* MyRotatingView.h */,
+				13E245A0217B6F4500D5D534 /* MyRotatingView.m */,
 			);
 			path = ColorChart_Geek_ObjC;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13E245A1217B6F4500D5D534 /* MyRotatingView.m in Sources */,
 				13E24572217B6BDE00D5D534 /* ViewController.m in Sources */,
 				13E2457D217B6BE100D5D534 /* main.m in Sources */,
 				13E2456F217B6BDE00D5D534 /* AppDelegate.m in Sources */,
@@ -435,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ColorChart_Geek_ObjC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -451,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ColorChart_Geek_ObjC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
