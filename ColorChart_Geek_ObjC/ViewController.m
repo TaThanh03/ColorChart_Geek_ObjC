@@ -30,19 +30,34 @@ MyRotatingView *v;
     [[v sliderR] setContinuous:YES];
     [[v sliderV] setContinuous:YES];
     [[v sliderB] setContinuous:YES];
-    
     [[v sliderR] setMinimumValue:0];
     [[v sliderV] setMinimumValue:0];
     [[v sliderB] setMinimumValue:0];
-    
     [[v sliderR] setMaximumValue:1];
     [[v sliderV] setMaximumValue:1];
     [[v sliderB] setMaximumValue:1];
     
+    [[v labelPenultimate] setText:@"Penultimate"];
+    [[v labelPenultimate] setTextAlignment:NSTextAlignmentCenter];
+    [[v labelPrevious] setText:@"Previous"];
+    [[v labelPrevious] setTextAlignment:NSTextAlignmentCenter];
+    [[v labelCurrent] setText:@"Current"];
+    [[v labelCurrent] setTextAlignment:NSTextAlignmentCenter];
+    [[v labelSwitch] setText:@"Web"];
+    [[v labelR] setText:@"R: 0%"];
+    [[v labelV] setText:@"V: 0%"];
+    [[v labelB] setText:@"B: 0%"];
+    
+    [[v buttonMemorize] setTitle:@"Memorize" forState:UIControlStateNormal];
+    [[v buttonMemorize] setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
+    [[v buttonMemorize] setTitleColor:UIColor.redColor forState:UIControlStateHighlighted];
+    [[v buttonReset] setTitle:@"Reset" forState:UIControlStateNormal];
+    [[v buttonReset] setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
+    [[v buttonReset] setTitleColor:UIColor.redColor forState:UIControlStateHighlighted];
+    
     _curentColor = UIColor.grayColor;
     _secondColor = UIColor.grayColor;
     _thirdColor = UIColor.grayColor;
-    
     [[v viewCurrent] setBackgroundColor:_curentColor];
     [[v buttonPrevious] setBackgroundColor:_secondColor];
     [[v buttonPenultimate] setBackgroundColor:_thirdColor];
@@ -70,33 +85,55 @@ MyRotatingView *v;
         [[v labelR] setText:[NSString stringWithFormat:@"R: %d%%", (int)([[v sliderR] value]*100)]];
         [[v labelV] setText:[NSString stringWithFormat:@"V: %d%%", (int)([[v sliderV] value]*100)]];
         [[v labelB] setText:[NSString stringWithFormat:@"B: %d%%", (int)([[v sliderB] value]*100)]];
-        [[v viewCurrent] setBackgroundColor:[UIColor colorWithRed:[[v sliderR] value]
-                                                              green:[[v sliderV] value]
-                                                               blue:[[v sliderB] value]
-                                                              alpha:1]];
+        [[v viewCurrent] setBackgroundColor:[UIColor colorWithRed:[[v sliderR] value] green:[[v sliderV] value] blue:[[v sliderB] value] alpha:1]];
     }
-    /*
-    if (!_outletSwitch.isOn){
-        int roundedR = (int)(((int)(_outletSliderR.value*100))/10)*10;
-        int roundedV = (int)(((int)(_outletSliderV.value*100))/10)*10;
-        int roundedB = (int)(((int)(_outletSliderB.value*100))/10)*10;
-        _outletLabelR.text = [NSString stringWithFormat:@"R: %d%%", roundedR];
-        _outletLabelV.text = [NSString stringWithFormat:@"V: %d%%", roundedV];
-        _outletLabelB.text = [NSString stringWithFormat:@"B: %d%%", roundedB];
-        //NSLog(@"%d", roundedR);
-        float roundedR2 = (float)roundedR/100;
-        float roundedV2 = (float)roundedV/100;
-        float roundedB2 = (float)roundedB/100;
-        _outletCurrent.backgroundColor = [UIColor colorWithRed:roundedR2 green:roundedV2 blue:roundedB2 alpha:1];
-        
-    } else {
-        //NSLog(@"%f", _outletSliderR.value);
-        _outletLabelR.text = [NSString stringWithFormat:@"R: %d%%", (int)(_outletSliderR.value*100)];
-        _outletLabelV.text = [NSString stringWithFormat:@"V: %d%%", (int)(_outletSliderV.value*100)];
-        _outletLabelB.text = [NSString stringWithFormat:@"B: %d%%", (int)(_outletSliderB.value*100)];
-        _outletCurrent.backgroundColor = [UIColor colorWithRed:_outletSliderR.value green:_outletSliderV.value blue:_outletSliderB.value alpha:1];
-    }
-    */
+}
+
+- (void) actionButtonMemorizetouched: (UIButton*) sender{
+    NSLog(@"tick");
+    [_curentColor release];
+    _curentColor = [[[v viewCurrent] backgroundColor] copy];
+    [_thirdColor release];
+    _thirdColor = [_secondColor retain];
+    [_secondColor release];
+    _secondColor = [_curentColor copy];
+    [[v buttonPrevious] setBackgroundColor:_secondColor];
+    [[v buttonPenultimate] setBackgroundColor:_thirdColor];
+}
+
+- (void)actionButtonResettouched:(UIButton *)sender{
+    NSLog(@"tock");
+    [_curentColor release];
+    [[v sliderR] setValue:0.5];
+    [[v sliderV] setValue:0.5];
+    [[v sliderB] setValue:0.5];
+    [self actionSliderchanged:nil];
+    _curentColor = UIColor.grayColor;
+    [[v viewCurrent] setBackgroundColor:_curentColor];
+}
+
+- (void)actionSwitchchanged:(UISwitch *)sender{}
+
+- (void)actionButtonPreviousTouched:(UIButton *)sender{
+    CGFloat red = 0.0, green = 0.0, blue = 0.0;
+    [[[v buttonPrevious] backgroundColor] getRed:&red green:&green blue:&blue alpha:nil];
+    [[v sliderR] setValue:red];
+    [[v sliderV] setValue:green];
+    [[v sliderB] setValue:blue];
+    [self actionSliderchanged:nil];
+    [_curentColor release]; //bon ou pas?
+    _curentColor = [[[v viewCurrent] backgroundColor] copy];
+}
+
+- (void)actionButtonPenultimateTouched:(UIButton *)sender{
+    CGFloat red = 0.0, green = 0.0, blue = 0.0;
+    [[[v buttonPenultimate] backgroundColor] getRed:&red green:&green blue:&blue alpha:nil];
+    [[v sliderR] setValue:red];
+    [[v sliderV] setValue:green];
+    [[v sliderB] setValue:blue];
+    [self actionSliderchanged:nil];
+    [_curentColor release]; //bon ou pas?
+    _curentColor = [[[v viewCurrent] backgroundColor] copy];
 }
 
 @end
