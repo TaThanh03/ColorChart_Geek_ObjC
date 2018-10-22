@@ -27,34 +27,6 @@ MyRotatingView *v;
     [self setView:v];
     [v release]; //because setView opperation has increase reference counter
     
-    [[v sliderR] setContinuous:YES];
-    [[v sliderV] setContinuous:YES];
-    [[v sliderB] setContinuous:YES];
-    [[v sliderR] setMinimumValue:0];
-    [[v sliderV] setMinimumValue:0];
-    [[v sliderB] setMinimumValue:0];
-    [[v sliderR] setMaximumValue:1];
-    [[v sliderV] setMaximumValue:1];
-    [[v sliderB] setMaximumValue:1];
-    
-    [[v labelPenultimate] setText:@"Penultimate"];
-    [[v labelPenultimate] setTextAlignment:NSTextAlignmentCenter];
-    [[v labelPrevious] setText:@"Previous"];
-    [[v labelPrevious] setTextAlignment:NSTextAlignmentCenter];
-    [[v labelCurrent] setText:@"Current"];
-    [[v labelCurrent] setTextAlignment:NSTextAlignmentCenter];
-    [[v labelSwitch] setText:@"Web"];
-    [[v labelR] setText:@"R: 0%"];
-    [[v labelV] setText:@"V: 0%"];
-    [[v labelB] setText:@"B: 0%"];
-    
-    [[v buttonMemorize] setTitle:@"Memorize" forState:UIControlStateNormal];
-    [[v buttonMemorize] setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
-    [[v buttonMemorize] setTitleColor:UIColor.redColor forState:UIControlStateHighlighted];
-    [[v buttonReset] setTitle:@"Reset" forState:UIControlStateNormal];
-    [[v buttonReset] setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
-    [[v buttonReset] setTitleColor:UIColor.redColor forState:UIControlStateHighlighted];
-    
     _curentColor = UIColor.grayColor;
     _secondColor = UIColor.grayColor;
     _thirdColor = UIColor.grayColor;

@@ -36,6 +36,34 @@ CGFloat border_side;
         _switchMode = [[UISwitch alloc]init];
         _labelSwitch = [[UILabel alloc]init];
         
+        [_sliderR setContinuous:YES];
+        [_sliderV setContinuous:YES];
+        [_sliderB setContinuous:YES];
+        [_sliderR setMinimumValue:0];
+        [_sliderV setMinimumValue:0];
+        [_sliderB setMinimumValue:0];
+        [_sliderR setMaximumValue:1];
+        [_sliderV setMaximumValue:1];
+        [_sliderB setMaximumValue:1];
+        
+        [_labelPenultimate setText:@"Penultimate"];
+        [_labelPenultimate setTextAlignment:NSTextAlignmentCenter];
+        [_labelPrevious setText:@"Previous"];
+        [_labelPrevious setTextAlignment:NSTextAlignmentCenter];
+        [_labelCurrent setText:@"Current"];
+        [_labelCurrent setTextAlignment:NSTextAlignmentCenter];
+        [_labelSwitch setText:@"Web"];
+        [_labelR setText:@"R: 0%"];
+        [_labelV setText:@"V: 0%"];
+        [_labelB setText:@"B: 0%"];
+        
+        [_buttonMemorize setTitle:@"Memorize" forState:UIControlStateNormal];
+        [_buttonMemorize setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
+        [_buttonMemorize setTitleColor:UIColor.redColor forState:UIControlStateHighlighted];
+        [_buttonReset setTitle:@"Reset" forState:UIControlStateNormal];
+        [_buttonReset setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
+        [_buttonReset setTitleColor:UIColor.redColor forState:UIControlStateHighlighted];
+        
         [_buttonPenultimate addTarget:self.superview action:@selector(actionButtonPenultimateTouched:) forControlEvents:UIControlEventTouchDown];
         [_buttonPrevious addTarget:self.superview action:@selector(actionButtonPreviousTouched:) forControlEvents:UIControlEventTouchDown];
         [_buttonMemorize addTarget:self.superview action:@selector(actionButtonMemorizetouched:) forControlEvents:UIControlEventTouchDown];
@@ -84,11 +112,6 @@ CGFloat border_side;
 }
 
 - (void) drawInFormat:(CGSize)format {
-    outlet_width = format.width - (format.width / 10.0)*2;
-    outlet_height = 30.0;
-    border_head = 40.0;
-    border_bottom = format.height-50.0;
-    border_side = format.width/10.0;
     //I have 15*30 + 40 + 50 = 599 = 600 minimum points
     NSLog(@"w %f", format.width);
     NSLog(@"h %f", format.height);
